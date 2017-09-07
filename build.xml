@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<project name="Hello World Project" basedir="." default="clean">
+
+ <property file="build.properties"/>
+
+ <path id="compile.classpath">
+  <fileset dir="lib">
+   <include name="*.jar"/>
+  </fileset>
+ </path>
+
+ <target name="info">
+  <echo>${ant.project.name}</echo>
+  <echo>Java version ${ant.java.version}</echo>
+  <echo>${ant.version}</echo>
+ </target>
+
+ <target name="init" depends="info">
+  <mkdir dir="build/classes"/>
+  <mkdir dir="dist"/>
+ </target>
+
+ <target name="compile" depends="init">
+  <javac destdir="build/classes" debug="true" srcdir="src">
+   <classpath refid="compile.classpath"/>
+  </javac>
+ </target>
+
+ <target name="package" depends="compile">
+  <jar destfile="dist/app.jar" basedir="build/classes">
+   <manifest>
+    <attribute name="Main-Class" value="${mclass}"/>
+   </manifest>
+  </jar>
+ </target>
+
+ <target name="clean" depends="package">
+  <delete dir="build"/>
+ </target>
+
+</project>
