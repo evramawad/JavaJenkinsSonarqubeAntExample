@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="Hello World Project" basedir="." default="clean">
+<project name="Hello World Project" basedir="." default="clean" xmlns:sonar="antlib:org.sonar.ant">
 
  <property file="build.properties"/>
 
